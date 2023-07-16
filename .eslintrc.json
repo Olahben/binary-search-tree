@@ -10,6 +10,7 @@
     },
     "rules": {
         "no-plusplus":"off",
-        "one-var":"off"
+        "one-var":"off",
+        "consistent-return":"off"
     }
 }
