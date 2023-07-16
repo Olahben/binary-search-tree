@@ -23,6 +23,8 @@ function buildTree(arr) {
     for (; j <= n; j++) {
       sorted[k++] = b[j];
     }
+
+    return sorted;
   }
   function mergeSort(arr2) {
     if (arr2 <= 1) return;
