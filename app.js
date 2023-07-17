@@ -5,9 +5,9 @@ function node(data, left, right) {
 function buildTree(arr) {
   function merge(a, b, m, n) {
     const sorted = [];
-    let i,
-      j,
-      k = 1;
+    let i = 0,
+      j = 0,
+      k = 0;
 
     while (i <= m && j <= n) {
       if (a[i] < b[j]) {
@@ -27,14 +27,19 @@ function buildTree(arr) {
     return sorted;
   }
   function mergeSort(arr2) {
-    if (arr2 <= 1) return;
+    const copy = arr2;
+    if (copy.length <= 1) return copy;
 
-    const l = 0;
-    const h = arr2.length - 1;
-    const mid = (l + h) / 2;
+    const mid = copy.length / 2;
 
-    const left = mergeSort(arr2.slice(l, mid));
-    const right = mergeSort(arr2.slice(mid + 1, h));
-    return merge(left, right, left.length + 1, right.length + 1);
+    const left = mergeSort(copy.slice(0, mid));
+    const right = mergeSort(copy.slice(mid, copy.length));
+    if (left === undefined) return copy;
+    if (right === undefined) return copy;
+    return merge(left, right, left.length - 1, right.length - 1);
   }
+  return mergeSort(arr);
 }
+
+console.log(buildTree([2, 1, 6, 4, 8, 7, 3, 5]));
+// console.log(buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]));
