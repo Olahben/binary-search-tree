@@ -10,7 +10,7 @@ function buildTree(arr) {
       k = 0;
 
     while (i <= m && j <= n) {
-      if (a[i] < b[j]) {
+      if (a[i] <= b[j]) {
         sorted[k++] = a[i++];
       } else {
         sorted[k++] = b[j++];
@@ -38,8 +38,14 @@ function buildTree(arr) {
     if (right === undefined) return copy;
     return merge(left, right, left.length - 1, right.length - 1);
   }
-  return mergeSort(arr);
+  const result = mergeSort(arr);
+  const set = new Set([]);
+  result.forEach((val) => {
+    set.add(val);
+  });
+  const nonDuplicateResult = [...set]; // An array created with the spread operator
+  console.log(nonDuplicateResult);
 }
 
-console.log(buildTree([2, 1, 6, 4, 8, 7, 3, 5]));
-// console.log(buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]));
+// console.log(buildTree([2, 1, 6, 4, 8, 7, 3, 5]));
+buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
