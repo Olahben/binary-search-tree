@@ -12,6 +12,7 @@
         "no-plusplus":"off",
         "one-var":"off",
         "consistent-return":"off",
-        "no-console":"off"
+        "no-console":"off",
+        "quotes":"off"
     }
 }
