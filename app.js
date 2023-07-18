@@ -1,6 +1,19 @@
-function node(data, left, right) {
+function nodeFac(data, left, right) {
   return { data, left, right };
 }
+
+const prettyPrint = (node, prefix = "", isLeft = true) => {
+  if (node === null) {
+    return;
+  }
+  if (node.right !== null) {
+    prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+  }
+  console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+  if (node.left !== null) {
+    prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+  }
+};
 
 function merge(a, b, m, n) {
   const sorted = [];
@@ -57,14 +70,14 @@ function buildTree(arr) {
     const leftSubarray = copy.slice(start, mid);
     const rightSubarray = copy.slice(mid + 1, end);
 
-    const root = node(copy[mid]);
+    const root = nodeFac(copy[mid]);
     root.left = createTree(leftSubarray);
     root.right = createTree(rightSubarray);
 
-    console.log(root);
     return root;
   }
-  createTree(nonDuplicateResult);
+  const callResult = createTree(nonDuplicateResult);
+  prettyPrint(callResult);
 }
 
 // console.log(buildTree([2, 1, 6, 4, 8, 7, 3, 5]));
