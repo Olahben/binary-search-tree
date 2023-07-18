@@ -1,5 +1,5 @@
-function nodeFac(data, left, right) {
-  return { data, left, right };
+function nodeFac(data) {
+  return { data };
 }
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -67,10 +67,8 @@ function buildTree(arr) {
     const end = copy.length - 1;
     if (start > end) return null;
     const mid = Math.round((start + (end - start)) / 2);
-    console.log(copy[mid]);
     const leftSubarray = copy.slice(start, mid);
-    const rightSubarray = copy.slice(mid + 1, end);
-
+    const rightSubarray = copy.slice(mid + 1, copy.length);
     const root = nodeFac(copy[mid]);
     root.left = createTree(leftSubarray);
     root.right = createTree(rightSubarray);
@@ -78,7 +76,6 @@ function buildTree(arr) {
     return root;
   }
   const callResult = createTree(nonDuplicateResult);
-  // console.log(callResult);
   prettyPrint(callResult);
 }
 
