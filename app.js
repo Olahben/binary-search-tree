@@ -66,7 +66,8 @@ function buildTree(arr) {
     const start = 0;
     const end = copy.length - 1;
     if (start > end) return null;
-    const mid = (start + (end - start)) / 2;
+    const mid = Math.floor((start + (end - start)) / 2);
+    console.log(mid);
     const leftSubarray = copy.slice(start, mid);
     const rightSubarray = copy.slice(mid + 1, end);
 
