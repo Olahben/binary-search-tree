@@ -49,16 +49,20 @@ function buildTree(arr) {
   console.log(nonDuplicateResult);
 
   function createTree(arr3) {
-    /* const copy = arr3;
+    const copy = arr3;
     const start = 0;
     const end = copy.length - 1;
+    if (start > end) return null;
     const mid = (start + (end - start)) / 2;
     const leftSubarray = copy.slice(start, mid);
     const rightSubarray = copy.slice(mid + 1, end);
-    console.log(leftSubarray);
-    console.log(rightSubarray);
 
-    const root = node(copy[mid]); */
+    const root = node(copy[mid]);
+    root.left = createTree(leftSubarray);
+    root.right = createTree(rightSubarray);
+
+    console.log(root);
+    return root;
   }
   createTree(nonDuplicateResult);
 }
