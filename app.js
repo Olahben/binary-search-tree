@@ -77,6 +77,8 @@ function buildTree(arr) {
   }
   const callResult = createTree(nonDuplicateResult);
   prettyPrint(callResult);
+  console.log(callResult);
+  return callResult;
 }
 
 // console.log(buildTree([2, 1, 6, 4, 8, 7, 3, 5]));
