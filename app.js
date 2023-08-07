@@ -52,6 +52,30 @@ function mergeSort(arr2) {
   return merge(left, right, left.length - 1, right.length - 1);
 }
 
+function insert(val, data) {
+  console.log(data);
+  // if (data === null) return;
+  const x = data.data;
+  console.log(x);
+  console.log(data.right);
+  if (data.right === null && val > x) {
+    data.right = nodeFac(val);
+    data.right.right = null;
+    data.right.left = null;
+    console.log("case0");
+    return;
+  }
+  if (data.left === null && val > x) {
+    data.left = nodeFac(val);
+    data.left.right = null;
+    data.left.left = null;
+    console.log("case1");
+    return;
+  }
+  if (val > x) insert(val, data.right);
+  if (val < x) insert(val, data.left);
+}
+
 function buildTree(arr) {
   const result = mergeSort(arr);
   const set = new Set([]);
@@ -76,8 +100,9 @@ function buildTree(arr) {
     return root;
   }
   const callResult = createTree(nonDuplicateResult);
+  // console.log(callResult);
+  insert(24, callResult);
   prettyPrint(callResult);
-  console.log(callResult);
   return callResult;
 }
 
