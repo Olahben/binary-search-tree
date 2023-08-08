@@ -65,10 +65,12 @@ function deleteNode(val, data) {
     // if one child
 
     if (data.left.left !== null) {
-      // set parent pointer to grandchild
+      data.left = data.left.left;
+      return;
     }
     if (data.left.right !== null) {
-      // set parent pointer to grandchild
+      data.left = data.left.right;
+      return;
     }
   }
   if (data.right.data === val) {
@@ -80,10 +82,12 @@ function deleteNode(val, data) {
 
     // if one child
     if (data.right.right !== null) {
-      // set parent pointer to grandchild
+      data.right = data.right.right;
+      return;
     }
     if (data.right.left !== null) {
-      // set parent pointer to grandchild
+      data.right = data.right.left;
+      return;
     }
   }
   if (val > x) deleteNode(val, data.right);
@@ -137,6 +141,7 @@ function buildTree(arr) {
   insert(7777, callResult);
   insert(7778, callResult);
   deleteNode(9, callResult);
+  deleteNode(23, callResult);
   prettyPrint(callResult);
   return callResult;
 }
