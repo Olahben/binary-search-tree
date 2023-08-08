@@ -62,12 +62,28 @@ function deleteNode(val, data) {
       data.left = null;
       return;
     }
+    // if one child
+
+    if (data.left.left !== null) {
+      // set parent pointer to grandchild
+    }
+    if (data.left.right !== null) {
+      // set parent pointer to grandchild
+    }
   }
   if (data.right.data === val) {
     // if leaf node
     if (data.right.left === null && data.right.right === null) {
       data.right = null;
       return;
+    }
+
+    // if one child
+    if (data.right.right !== null) {
+      // set parent pointer to grandchild
+    }
+    if (data.right.left !== null) {
+      // set parent pointer to grandchild
     }
   }
   if (val > x) deleteNode(val, data.right);
