@@ -52,6 +52,22 @@ function mergeSort(arr2) {
   return merge(left, right, left.length - 1, right.length - 1);
 }
 
+function deleteNode(val, data) {
+  console.log(data);
+  const x = data.data;
+  // if if etc continue here
+  if (data.left.data === val) {
+    data.left = null;
+    return;
+  }
+  if (data.right.data === val) {
+    data.right = null;
+    return;
+  }
+  if (val > x) deleteNode(val, data.right);
+  if (val < x) deleteNode(val, data.left);
+}
+
 function insert(val, data) {
   const x = data.data;
   if (data.right === null && val > x) {
@@ -98,6 +114,7 @@ function buildTree(arr) {
   insert(24, callResult);
   insert(7777, callResult);
   insert(7778, callResult);
+  deleteNode(9, callResult);
   prettyPrint(callResult);
   return callResult;
 }
