@@ -56,11 +56,20 @@ function deleteNode(val, data) {
   console.log(data);
   const x = data.data;
   // if if etc continue here
-  if (data.left.data === val) {
+  if (
+    // if leaf node
+    data.left.data === val &&
+    data.left.left === null &&
+    data.left.right === null
+  ) {
     data.left = null;
     return;
   }
-  if (data.right.data === val) {
+  if ( // if leaf node
+    data.right.data === val &&
+    data.right.left === null &&
+    data.right.right === null
+  ) {
     data.right = null;
     return;
   }
