@@ -56,14 +56,30 @@ function deleteNode(val, data) {
   console.log(data);
 
   const x = data.data;
+
+  function findLeftOfRight(_data) {
+    console.log(_data);
+    if (_data.left === null) return _data.data;
+    return findLeftOfRight(_data.left);
+  }
+
+  if (x === val) {
+    if (data.left !== null && data.right !== null) {
+      const root = data.data;
+      const { right } = data;
+      const result = findLeftOfRight(right);
+      data.data = result;
+      return;
+    }
+    return;
+  }
   if (data.left.data === val) {
+    // parent checker
     // if leaf node
     if (data.left.left === null && data.left.right === null) {
       data.left = null;
       return;
     }
-    // if one child
-
     if (data.left.left !== null) {
       data.left = data.left.left;
       return;
@@ -74,6 +90,7 @@ function deleteNode(val, data) {
     }
   }
   if (data.right.data === val) {
+    // parent checker
     // if leaf node
     if (data.right.left === null && data.right.right === null) {
       data.right = null;
@@ -140,8 +157,10 @@ function buildTree(arr) {
   insert(24, callResult);
   insert(7777, callResult);
   insert(7778, callResult);
-  deleteNode(9, callResult);
-  deleteNode(23, callResult);
+  insert(10, callResult);
+  // deleteNode(9, callResult);
+  // deleteNode(7, callResult);
+  deleteNode(8, callResult);
   prettyPrint(callResult);
   return callResult;
 }
