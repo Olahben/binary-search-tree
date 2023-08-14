@@ -53,15 +53,14 @@ function mergeSort(arr2) {
 }
 
 function deleteNode(val, data) {
+  console.log(data);
   const x = data.data;
-  let saveNode;
 
   function findLeftOfRight(_data) {
     console.log(_data);
-    saveNode = _data.left.right;
     if (_data.left.left === null) {
       const dltNode = _data.left.data;
-      _data.left = saveNode;
+      deleteNode(_data.left.data, _data);
       return dltNode;
     }
     return findLeftOfRight(_data.left);
@@ -76,11 +75,17 @@ function deleteNode(val, data) {
     }
     return;
   }
+  // parent checker
   if (data.left.data === val) {
+    // if two children
+    if (data.left.left !== null && data.left.right !== null) {
+    }
+    // if leaf node
     if (data.left.left === null && data.left.right === null) {
       data.left = null;
       return;
     }
+    // if one child
     if (data.left.left !== null) {
       data.left = data.left.left;
       return;
@@ -92,6 +97,9 @@ function deleteNode(val, data) {
   }
   if (data.right.data === val) {
     // parent checker
+    // if two children
+    if (data.right.left !== null && data.right.left !== null) {
+    }
     // if leaf node
     if (data.right.left === null && data.right.right === null) {
       data.right = null;
