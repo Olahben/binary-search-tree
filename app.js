@@ -53,11 +53,9 @@ function mergeSort(arr2) {
 }
 
 function deleteNode(val, data) {
-  console.log(data);
   const x = data.data;
 
   function findLeftOfRight(_data) {
-    console.log(_data);
     if (_data.left.left === null) {
       const dltNode = _data.left.data;
       deleteNode(dltNode, _data);
@@ -146,6 +144,15 @@ function insert(val, data) {
   if (val < x) insert(val, data.left);
 }
 
+function find(val, data) {
+  if (data.data === val) {
+    return `Here is the node that you are looking for: ${data}`;
+  }
+
+  if (val > data.data) find(val, data.right);
+  else find(val, data.left);
+}
+
 function buildTree(arr) {
   const result = mergeSort(arr);
   const set = new Set([]);
@@ -176,6 +183,7 @@ function buildTree(arr) {
   insert(10, callResult);
   insert(350, callResult);
   deleteNode(67, callResult);
+  find(23, callResult);
   prettyPrint(callResult);
   return callResult;
 }
