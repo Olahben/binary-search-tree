@@ -172,11 +172,9 @@ function buildTree(arr) {
   const callResult = createTree(nonDuplicateResult);
   // console.log(callResult);
   insert(24, callResult);
-  insert(7777, callResult);
   insert(7778, callResult);
   insert(10, callResult);
-  // deleteNode(9, callResult);
-  // deleteNode(7, callResult);
+  insert(350, callResult);
   deleteNode(67, callResult);
   prettyPrint(callResult);
   return callResult;
