@@ -152,6 +152,18 @@ function find(val, data) {
   if (val > data.data) find(val, data.right);
   else find(val, data.left);
 }
+let first = true;
+let stop = false;
+const queue = [];
+function levelOrder(cb, data) {
+  // console.log(queue);
+  if (stop) return;
+  if (data === null) return;
+  if (first === true) queue.push(data);
+  first = false;
+  cb();
+  levelOrder(cb, queue[0]);
+}
 
 function buildTree(arr) {
   const result = mergeSort(arr);
@@ -183,7 +195,17 @@ function buildTree(arr) {
   insert(10, callResult);
   insert(350, callResult);
   deleteNode(67, callResult);
-  find(23, callResult);
+  console.log(find(23, callResult));
+  levelOrder(() => {
+    if (queue.length === 0) {
+      stop = true;
+      return;
+    }
+    const node = queue.shift(); // remove the first item in the queue and push its children
+    console.log(node.data);
+    if (node.left !== null) queue.push(node.left);
+    if (node.right !== null) queue.push(node.right);
+  }, callResult);
   prettyPrint(callResult);
   return callResult;
 }
