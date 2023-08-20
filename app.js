@@ -146,7 +146,8 @@ function insert(val, data) {
 
 function find(val, data) {
   if (data.data === val) {
-    return `Here is the node that you are looking for: ${data}`;
+    // console.log(data);
+    return;
   }
 
   if (val > data.data) find(val, data.right);
@@ -187,23 +188,23 @@ function buildTree(arr) {
     return root;
   }
   const callResult = createTree(nonDuplicateResult);
-  // console.log(callResult);
   insert(24, callResult);
   insert(7778, callResult);
   insert(10, callResult);
   insert(350, callResult);
   deleteNode(67, callResult);
-  console.log(find(23, callResult));
+  find(10, callResult);
   levelOrder(() => {
     if (queue.length === 0) {
       stop = true;
       return;
     }
     const node = queue.shift(); // remove the first item in the queue and push its children
-    console.log(node.data);
+    // console.log(node.data);
     if (node.left !== null) queue.push(node.left);
     if (node.right !== null) queue.push(node.right);
   }, callResult);
+  // preorder(callResult);
   prettyPrint(callResult);
   return callResult;
 }
