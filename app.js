@@ -156,9 +156,7 @@ let first = true;
 let stop = false;
 const queue = [];
 function levelOrder(cb, data) {
-  // console.log(queue);
-  if (stop) return;
-  if (data === null) return;
+  if (stop || data == null) return;
   if (first === true) queue.push(data);
   first = false;
   cb();
