@@ -164,6 +164,14 @@ function levelOrder(cb, data) {
   levelOrder(cb, queue[0]);
 }
 
+function preorder(data) {
+  if (data === null) return;
+  // console.log(data.data);
+
+  preorder(data.left);
+  preorder(data.right);
+}
+
 function buildTree(arr) {
   const result = mergeSort(arr);
   const set = new Set([]);
@@ -204,7 +212,7 @@ function buildTree(arr) {
     if (node.left !== null) queue.push(node.left);
     if (node.right !== null) queue.push(node.right);
   }, callResult);
-  // preorder(callResult);
+  preorder(callResult);
   prettyPrint(callResult);
   return callResult;
 }
