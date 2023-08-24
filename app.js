@@ -172,6 +172,13 @@ function preorder(data) {
   preorder(data.right);
 }
 
+function inorder(data) {
+  if (data === null) return;
+  inorder(data.left);
+  console.log(data.data);
+  inorder(data.right);
+}
+
 function buildTree(arr) {
   const result = mergeSort(arr);
   const set = new Set([]);
@@ -213,6 +220,7 @@ function buildTree(arr) {
     if (node.right !== null) queue.push(node.right);
   }, callResult);
   preorder(callResult);
+  inorder(callResult);
   prettyPrint(callResult);
   return callResult;
 }
