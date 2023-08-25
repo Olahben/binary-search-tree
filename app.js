@@ -175,8 +175,15 @@ function preorder(data) {
 function inorder(data) {
   if (data === null) return;
   inorder(data.left);
-  console.log(data.data);
+  // console.log(data.data);
   inorder(data.right);
+}
+
+function postorder(data) {
+  if (data === null) return;
+  postorder(data.left);
+  postorder(data.right);
+  // console.log(data.data);
 }
 
 function buildTree(arr) {
@@ -221,6 +228,7 @@ function buildTree(arr) {
   }, callResult);
   preorder(callResult);
   inorder(callResult);
+  postorder(callResult);
   prettyPrint(callResult);
   return callResult;
 }
