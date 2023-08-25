@@ -147,11 +147,12 @@ function insert(val, data) {
 function find(val, data) {
   if (data.data === val) {
     // console.log(data);
-    return;
+    return data;
   }
 
-  if (val > data.data) find(val, data.right);
-  else find(val, data.left);
+  if (val > data.data) return find(val, data.right);
+  // eslint-disable-next-line no-else-return
+  else return find(val, data.left);
 }
 let first = true;
 let stop = false;
@@ -184,6 +185,11 @@ function postorder(data) {
   postorder(data.left);
   postorder(data.right);
   // console.log(data.data);
+}
+
+function height(node, data) {
+  const result = find(node, data);
+  console.log(result);
 }
 
 function buildTree(arr) {
@@ -229,6 +235,7 @@ function buildTree(arr) {
   preorder(callResult);
   inorder(callResult);
   postorder(callResult);
+  height(324, callResult);
   prettyPrint(callResult);
   return callResult;
 }
