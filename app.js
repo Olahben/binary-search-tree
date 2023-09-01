@@ -196,6 +196,14 @@ function height(data) {
   return Math.max(leftHeight, rightHeight) + 1;
 }
 
+function depth(node, data, edges = 0) {
+  if (data === null) return;
+  edges += 1;
+  if (data.data === node) return edges - 1;
+  if (node > data.data) return depth(node, data.right, edges);
+  return depth(node, data.left, edges);
+}
+
 function buildTree(arr) {
   const result = mergeSort(arr);
   const set = new Set([]);
@@ -240,6 +248,7 @@ function buildTree(arr) {
   inorder(callResult);
   postorder(callResult);
   height(find(324, callResult));
+  depth(10, callResult);
   prettyPrint(callResult);
   return callResult;
 }
