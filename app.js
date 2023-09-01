@@ -145,6 +145,7 @@ function insert(val, data) {
 }
 
 function find(val, data) {
+  // console.log(data);
   if (data.data === val) {
     // console.log(data);
     return data;
@@ -206,6 +207,19 @@ function depth(node, data, edges = 0) {
   return depth(node, data.left, edges);
 }
 
+function isBalanced(data) {
+  const leftHeight = height(data.left) + 1;
+  const rightHeight = height(data.right) + 1;
+  if (
+    leftHeight - rightHeight === 0 ||
+    leftHeight - rightHeight === -1 ||
+    leftHeight - rightHeight === 1
+  ) {
+    return true;
+  }
+  return false;
+}
+
 function buildTree(arr) {
   const result = mergeSort(arr);
   const set = new Set([]);
@@ -235,7 +249,7 @@ function buildTree(arr) {
   insert(10, callResult);
   insert(350, callResult);
   deleteNode(67, callResult);
-  find(10, callResult);
+  // find(10, callResult);
   levelOrder(() => {
     if (queue.length === 0) {
       stop = true;
@@ -251,6 +265,7 @@ function buildTree(arr) {
   postorder(callResult);
   height(find(324, callResult));
   depth(10, callResult);
+  isBalanced(callResult);
   prettyPrint(callResult);
   return callResult;
 }
