@@ -187,13 +187,15 @@ function postorder(data) {
   // console.log(data.data);
 }
 
-function height(data) {
+function height(data, edges = 0) {
   if (data === null) {
-    return -1;
+    edges -= 1;
+    return edges;
   }
-  const leftHeight = height(data.left);
-  const rightHeight = height(data.right);
-  return Math.max(leftHeight, rightHeight) + 1;
+  edges += 1;
+  const left = height(data.left, edges);
+  const right = height(data.right, edges);
+  return Math.max(left, right);
 }
 
 function depth(node, data, edges = 0) {
