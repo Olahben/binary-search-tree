@@ -187,9 +187,13 @@ function postorder(data) {
   // console.log(data.data);
 }
 
-function height(node, data) {
-  const result = find(node, data);
-  console.log(result);
+function height(data) {
+  if (data === null) {
+    return -1;
+  }
+  const leftHeight = height(data.left);
+  const rightHeight = height(data.right);
+  return Math.max(leftHeight, rightHeight) + 1;
 }
 
 function buildTree(arr) {
@@ -235,7 +239,7 @@ function buildTree(arr) {
   preorder(callResult);
   inorder(callResult);
   postorder(callResult);
-  height(324, callResult);
+  height(find(324, callResult));
   prettyPrint(callResult);
   return callResult;
 }
