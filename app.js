@@ -233,6 +233,15 @@ function depth(node, data, edges = 0) {
   return depth(node, data.left, edges);
 }
 
+function rebalance(data, newArr = []) {
+  if (data === null) return newArr;
+  newArr.push(data.data);
+  console.log(newArr);
+  rebalance(data.left, newArr);
+  rebalance(data.right, newArr);
+  return newArr;
+}
+
 function isBalanced(data) {
   const leftHeight = height(data.left) + 1;
   const rightHeight = height(data.right) + 1;
@@ -243,11 +252,10 @@ function isBalanced(data) {
   ) {
     return true;
   }
+  const newArr = rebalance(data);
+  const newTree = buildTree(newArr);
+  prettyPrint(newTree);
   return false;
-}
-
-function rebalance(data) {
-  
 }
 
 const callResult = buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
