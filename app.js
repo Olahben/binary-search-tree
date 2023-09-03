@@ -127,6 +127,7 @@ function deleteNode(val, data) {
 }
 
 function insert(val, data) {
+  console.log(val, data);
   const x = data.data;
   if (data.right === null && val > x) {
     data.right = nodeFac(val);
@@ -134,7 +135,7 @@ function insert(val, data) {
     data.right.left = null;
     return;
   }
-  if (data.left === null && val > x) {
+  if (data.left === null && val < x) {
     data.left = nodeFac(val);
     data.left.right = null;
     data.left.left = null;
@@ -247,6 +248,7 @@ function buildTree(arr) {
   insert(24, callResult);
   insert(7778, callResult);
   insert(10, callResult);
+  insert(12, callResult);
   insert(350, callResult);
   deleteNode(67, callResult);
   // find(10, callResult);
