@@ -52,6 +52,32 @@ function mergeSort(arr2) {
   return merge(left, right, left.length - 1, right.length - 1);
 }
 
+function buildTree(arr) {
+  const result = mergeSort(arr);
+  const set = new Set([]);
+  result.forEach((val) => {
+    set.add(val);
+  });
+  const nonDuplicateResult = [...set]; // An array created with the spread operator
+  console.log(nonDuplicateResult);
+
+  function createTree(arr3) {
+    const copy = arr3;
+    const start = 0;
+    const end = copy.length - 1;
+    if (start > end) return null;
+    const mid = Math.round((start + (end - start)) / 2);
+    const leftSubarray = copy.slice(start, mid);
+    const rightSubarray = copy.slice(mid + 1, copy.length);
+    const root = nodeFac(copy[mid]);
+    root.left = createTree(leftSubarray);
+    root.right = createTree(rightSubarray);
+
+    return root;
+  }
+  return createTree(nonDuplicateResult);
+}
+
 function deleteNode(val, data) {
   const x = data.data;
 
@@ -220,30 +246,8 @@ function isBalanced(data) {
   return false;
 }
 
-function buildTree(arr) {
-  const result = mergeSort(arr);
-  const set = new Set([]);
-  result.forEach((val) => {
-    set.add(val);
-  });
-  const nonDuplicateResult = [...set]; // An array created with the spread operator
-  console.log(nonDuplicateResult);
-
-  function createTree(arr3) {
-    const copy = arr3;
-    const start = 0;
-    const end = copy.length - 1;
-    if (start > end) return null;
-    const mid = Math.round((start + (end - start)) / 2);
-    const leftSubarray = copy.slice(start, mid);
-    const rightSubarray = copy.slice(mid + 1, copy.length);
-    const root = nodeFac(copy[mid]);
-    root.left = createTree(leftSubarray);
-    root.right = createTree(rightSubarray);
-
-    return root;
-  }
-  return createTree(nonDuplicateResult);
+function rebalance(data) {
+  
 }
 
 const callResult = buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
