@@ -243,33 +243,31 @@ function buildTree(arr) {
 
     return root;
   }
-  const callResult = createTree(nonDuplicateResult);
-  insert(24, callResult);
-  insert(7778, callResult);
-  insert(10, callResult);
-  insert(12, callResult);
-  insert(350, callResult);
-  deleteNode(67, callResult);
-  find(10, callResult);
-  levelOrder(() => {
-    if (queue.length === 0) {
-      stop = true;
-      return;
-    }
-    const node = queue.shift(); // remove the first item in the queue and push its children
-    // console.log(node.data);
-    if (node.left !== null) queue.push(node.left);
-    if (node.right !== null) queue.push(node.right);
-  }, callResult);
-  preorder(callResult);
-  inorder(callResult);
-  postorder(callResult);
-  height(find(324, callResult));
-  depth(10, callResult);
-  isBalanced(callResult);
-  prettyPrint(callResult);
-  return callResult;
+  return createTree(nonDuplicateResult);
 }
 
-// console.log(buildTree([2, 1, 6, 4, 8, 7, 3, 5]));
-buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+const callResult = buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+insert(24, callResult);
+insert(7778, callResult);
+insert(10, callResult);
+insert(12, callResult);
+insert(350, callResult);
+deleteNode(67, callResult);
+find(10, callResult);
+levelOrder(() => {
+  if (queue.length === 0) {
+    stop = true;
+    return;
+  }
+  const node = queue.shift(); // remove the first item in the queue and push its children
+  // console.log(node.data);
+  if (node.left !== null) queue.push(node.left);
+  if (node.right !== null) queue.push(node.right);
+}, callResult);
+preorder(callResult);
+inorder(callResult);
+postorder(callResult);
+height(find(324, callResult));
+depth(10, callResult);
+isBalanced(callResult);
+prettyPrint(callResult);
