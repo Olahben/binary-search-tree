@@ -127,7 +127,6 @@ function deleteNode(val, data) {
 }
 
 function insert(val, data) {
-  console.log(val, data);
   const x = data.data;
   if (data.right === null && val > x) {
     data.right = nodeFac(val);
@@ -251,7 +250,7 @@ function buildTree(arr) {
   insert(12, callResult);
   insert(350, callResult);
   deleteNode(67, callResult);
-  // find(10, callResult);
+  find(10, callResult);
   levelOrder(() => {
     if (queue.length === 0) {
       stop = true;
