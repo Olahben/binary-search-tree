@@ -59,7 +59,6 @@ function buildTree(arr) {
     set.add(val);
   });
   const nonDuplicateResult = [...set]; // An array created with the spread operator
-  console.log(nonDuplicateResult);
 
   function createTree(arr3) {
     const copy = arr3;
@@ -182,7 +181,7 @@ function find(val, data) {
   else return find(val, data.left);
 }
 let first = true;
-let stop = false;
+const stop = false;
 const queue = [];
 function levelOrder(cb, data) {
   if (stop || data == null) return;
@@ -258,28 +257,12 @@ function isBalanced(data) {
   return false;
 }
 
-const callResult = buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
-insert(24, callResult);
-insert(7778, callResult);
-insert(10, callResult);
-insert(12, callResult);
-insert(350, callResult);
-deleteNode(67, callResult);
-find(10, callResult);
-levelOrder(() => {
-  if (queue.length === 0) {
-    stop = true;
-    return;
+function drive() {
+  const arr = [];
+  for (let i = 0; i <= 100; i++) {
+    const num = Math.random() * 100;
+    arr.push(num.toFixed(0));
   }
-  const node = queue.shift(); // remove the first item in the queue and push its children
-  // console.log(node.data);
-  if (node.left !== null) queue.push(node.left);
-  if (node.right !== null) queue.push(node.right);
-}, callResult);
-preorder(callResult);
-inorder(callResult);
-postorder(callResult);
-height(find(324, callResult));
-depth(10, callResult);
-isBalanced(callResult);
-prettyPrint(callResult);
+  const result = buildTree(arr);
+}
+drive();
