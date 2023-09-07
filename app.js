@@ -193,7 +193,7 @@ function levelOrder(cb, data) {
 
 function preorder(data) {
   if (data === null) return;
-  // console.log(data.data);
+  console.log(data.data);
 
   preorder(data.left);
   preorder(data.right);
@@ -202,7 +202,7 @@ function preorder(data) {
 function inorder(data) {
   if (data === null) return;
   inorder(data.left);
-  // console.log(data.data);
+  console.log(data.data);
   inorder(data.right);
 }
 
@@ -210,7 +210,7 @@ function postorder(data) {
   if (data === null) return;
   postorder(data.left);
   postorder(data.right);
-  // console.log(data.data);
+  console.log(data.data);
 }
 
 function height(data, edges = 0) {
@@ -264,5 +264,9 @@ function drive() {
     arr.push(num.toFixed(0));
   }
   const result = buildTree(arr);
+  console.log(isBalanced(result));
+  preorder(result);
+  inorder(result);
+  postorder(result);
 }
 drive();
