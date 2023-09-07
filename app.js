@@ -15,41 +15,43 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-function merge(a, b, m, n) {
+function merge(a, b) {
   const sorted = [];
   let i = 0,
-    j = 0,
-    k = 0;
+    j = 0;
 
-  while (i <= m && j <= n) {
+  while (i < a.length && j < b.length) {
     if (a[i] <= b[j]) {
-      sorted[k++] = a[i++];
+      sorted.push(a[i]);
+      i++;
     } else {
-      sorted[k++] = b[j++];
+      sorted.push(b[j]);
+      j++;
     }
   }
 
-  for (; i <= m; i++) {
-    sorted[k++] = a[i];
+  while (i < a.length) {
+    sorted.push(a[i]);
+    i++;
   }
-  for (; j <= n; j++) {
-    sorted[k++] = b[j];
+
+  while (j < b.length) {
+    sorted.push(b[j]);
+    j++;
   }
 
   return sorted;
 }
 
-function mergeSort(arr2) {
-  const copy = arr2;
-  if (copy.length <= 1) return copy;
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
 
-  const mid = copy.length / 2;
+  const mid = Math.floor(arr.length / 2);
 
-  const left = mergeSort(copy.slice(0, mid));
-  const right = mergeSort(copy.slice(mid, copy.length));
-  if (left === undefined) return copy;
-  if (right === undefined) return copy;
-  return merge(left, right, left.length - 1, right.length - 1);
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
+
+  return merge(left, right);
 }
 
 function buildTree(arr) {
@@ -59,7 +61,7 @@ function buildTree(arr) {
     set.add(val);
   });
   const nonDuplicateResult = [...set]; // An array created with the spread operator
-
+  console.log(nonDuplicateResult);
   function createTree(arr3) {
     const copy = arr3;
     const start = 0;
@@ -235,7 +237,6 @@ function depth(node, data, edges = 0) {
 function rebalance(data, newArr = []) {
   if (data === null) return newArr;
   newArr.push(data.data);
-  console.log(newArr);
   rebalance(data.left, newArr);
   rebalance(data.right, newArr);
   return newArr;
@@ -251,22 +252,32 @@ function isBalanced(data) {
   ) {
     return true;
   }
-  const newArr = rebalance(data);
-  const newTree = buildTree(newArr);
-  prettyPrint(newTree);
   return false;
 }
 
 function drive() {
   const arr = [];
-  for (let i = 0; i <= 100; i++) {
+  for (let i = 0; i <= 10; i++) {
     const num = Math.random() * 100;
     arr.push(num.toFixed(0));
   }
   const result = buildTree(arr);
+  // prettyPrint(result);
   console.log(isBalanced(result));
   preorder(result);
   inorder(result);
   postorder(result);
+  insert(140, result);
+  insert(128, result);
+  insert(194, result);
+  insert(160, result);
+  console.log(isBalanced(result));
+  const newArr = rebalance(result);
+  const newResult = buildTree(newArr);
+  console.log(isBalanced(newResult));
+  preorder(newResult);
+  inorder(newResult);
+  postorder(newResult);
+  prettyPrint(newResult);
 }
 drive();
