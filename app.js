@@ -39,11 +39,12 @@ function merge(a, b) {
     sorted.push(b[j]);
     j++;
   }
-
+  console.log("sorted arr:", sorted);
   return sorted;
 }
 
 function mergeSort(arr) {
+  console.log("Merge arr:", arr);
   if (arr.length <= 1) return arr;
 
   const mid = Math.floor(arr.length / 2);
@@ -56,12 +57,13 @@ function mergeSort(arr) {
 
 function buildTree(arr) {
   const result = mergeSort(arr);
+  console.log("duplicate result:", result);
   const set = new Set([]);
   result.forEach((val) => {
     set.add(val);
   });
   const nonDuplicateResult = [...set]; // An array created with the spread operator
-  console.log(nonDuplicateResult);
+  // console.log(nonDuplicateResult);
   function createTree(arr3) {
     const copy = arr3;
     const start = 0;
@@ -259,7 +261,7 @@ function drive() {
   const arr = [];
   for (let i = 0; i <= 10; i++) {
     const num = Math.random() * 100;
-    arr.push(num.toFixed(0));
+    arr.push(Math.floor(num));
   }
   const result = buildTree(arr);
   // prettyPrint(result);
